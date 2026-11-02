@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10071d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="SONN(H)E">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Transforme hábitos em atributos e sua rotina em uma jornada de evolução pessoal.">
+  <title>SONN(H)E — RPG da Vida Real</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" href="assets/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theme-medieval.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="svg-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-shield" viewBox="0 0 24 24">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+      <path d="m9 12 2 2 4-4" />
+    </symbol>
+    <symbol id="i-user" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21v-2a8 8 0 0 1 16 0v2" />
+    </symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <rect x="14" y="14" width="7" height="7" rx="1" />
+    </symbol>
+    <symbol id="i-journey" viewBox="0 0 24 24">
+      <path d="M3 18c3-8 6-2 10-10s5 1 8-5" />
+      <path d="M16 3h5v5" />
+      <circle cx="3" cy="18" r="2" />
+    </symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24">
+      <path d="M8 21h8M12 17v4M7 3h10v7a5 5 0 0 1-10 0V3ZM7 5H3v2a5 5 0 0 0 5 5M17 5h4v2a5 5 0 0 1-5 5" />
+    </symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24">
+      <path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4" />
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="12" cy="12" r="2" />
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14" />
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="m4 12 5 5L20 6" />
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M5 12h14m-6-6 6 6-6 6" />
+    </symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24">
+      <path d="m15 18-6-6 6-6" />
+    </symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24">
+      <path d="m9 18 6-6-6-6" />
+    </symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24">
+      <path d="m16 5 3 3M4 20l4.5-1 11-11a2.12 2.12 0 0 0-3-3l-11 11L4 20Z" />
+    </symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24">
+      <path d="M3 6h18M8 6V4h8v2m3 0-1 15H6L5 6m5 4v7m4-7v7" />
+    </symbol>
+    <symbol id="i-download" viewBox="0 0 24 24">
+      <path d="M12 3v12m-4-4 4 4 4-4M4 17v4h16v-4" />
+    </symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24">
+      <path d="M12 16V4m-4 4 4-4 4 4M4 17v4h16v-4" />
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M7 3v4m10-4v4M3 10h18" />
+    </symbol>
+    <symbol id="i-fire" viewBox="0 0 24 24">
+      <path d="M12 22a8 8 0 0 0 8-8c0-4-3-7-5-9 0 4-2 5-3 6-1-4-4-6-5-8 0 5-3 8-3 11a8 8 0 0 0 8 8Z" />
+      <path d="M12 22a4 4 0 0 0 4-4c0-2-2-4-3-5 0 2-1 3-2 4l-1-2c-1 1-2 2-2 3a4 4 0 0 0 4 4Z" />
+    </symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24">
+      <path d="m12 2 1.9 7.1L21 11l-7.1 1.9L12 20l-1.9-7.1L3 11l7.1-1.9L12 2ZM19 19l1 2 1-2 2-1-2-1-1-2-1 2-2 1 2 1Z" />
+    </symbol>
+    <symbol id="i-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="12" cy="12" r="1" />
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path d="M5 5 19 19M19 5 5 19" />
+    </symbol>
+  </svg>
+
+
+
+
+
+
+  <!--CADASTRO-->
+  <main id="onboarding" class="onboarding-screen" hidden>
+    <div class="onboarding-art" aria-hidden="true">
+      <div class="onboarding-art-inner">
+        <div class="rune-circle"><img src="assets/sol-sonnhe.webp" alt="" width="180" height="180"></div>
+        <p class="eyebrow">UM NOVO CAPÍTULO</p>
+        <h1>Sua jornada<br><em>começa agora.</em></h1>
+        <p>"Somos o que constantemente fazemos. A excelência é, portanto, um <strong>HÁBITO</strong>. - Aristóteles"</p>
+        <div class="art-pills"><span>✦ Nivele</span><span>⚔ Persista</span><span>✧ Conquiste</span></div>
+      </div>
+    </div>
+    <section class="onboarding-form-panel" aria-labelledby="welcome-title">
+      <div class="onboarding-form-wrap">
+        <div class="onboard-theme-actions"><button type="button" class="theme-toggle" data-theme-toggle
+            aria-pressed="false"><span class="theme-toggle-sigil" aria-hidden="true">⚔</span><span
+              data-theme-action>Medieval 8-bit</span></button></div>
+        <div class="brand brand-onboard">
+          <div class="brand-mark"><img src="assets/sol-sonnhe.webp" alt="" width="34" height="34"></div><span>SONN(H)E
+            <small>RPG DA VIDA REAL</small></span>
+        </div>
+        <p class="eyebrow">CRIAÇÃO DE PERSONAGEM</p>
+        <h2 id="welcome-title">Crie seu novo eu.</h2>
+        <p class="muted">Toda grande história começa com um primeiro passo.</p>
+        <form id="create-form" novalidate>
+          <div class="avatar-picker-group">
+            <label class="avatar-picker" for="create-photo" aria-label="Escolher fotografia">
+              <span class="avatar-preview" id="create-avatar-preview">✦</span>
+              <span class="avatar-edit-symbol"><svg class="icon">
+                  <use href="#i-plus"></use>
+                </svg></span>
+            </label>
+            <div><strong>Seu avatar</strong>
+              <p class="muted small">Toque para adicionar sua foto</p>
+            </div>
+            <input type="file" id="create-photo" accept="image/png,image/jpeg,image/webp" class="sr-only">
+          </div>
+          <label class="field-label" for="create-name">Seu nome</label>
+          <input id="create-name" class="text-input" maxlength="32" minlength="2"
+            placeholder="Como devemos chamar você?" autocomplete="nickname" required>
+          <div class="onboard-section-title"><span class="field-label">ESCOLHA SEUS ATRIBUTOS</span><span
+              class="muted small">Você poderá alterá-los depois</span></div>
+          <div id="starter-choices" class="starter-grid" role="group" aria-label="Atributos iniciais"></div>
+          <p id="create-error" class="field-error" role="alert"></p>
+          <button type="submit" class="btn btn-primary btn-wide btn-large">Iniciar minha jornada <svg class="icon">
+              <use href="#i-arrow"></use>
+            </svg></button>
+          <p class="privacy-note">Seus dados ficam somente neste navegador.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <!--CADASTRO-->
+
+
+
+
+
+
+  <!--APLICACAO-->
+  <div id="app" class="app-shell" hidden>
+    <aside class="sidebar" aria-label="Navegação principal">
+      <div class="brand">
+        <div class="brand-mark"><img src="assets/sol-sonnhe.webp" alt="" width="34" height="34"></div><span>SONN(H)E
+          <small>RPG DA VIDA REAL</small></span>
+      </div>
+      <div class="nav-caption">SUA JORNADA</div>
+      <nav class="nav-list" aria-label="Seções">
+        <button class="nav-link active" data-page="personagem"><svg class="icon">
+            <use href="#i-user"></use>
+          </svg><span>Personagem</span></button>
+        <button class="nav-link" data-page="atributos"><svg class="icon">
+            <use href="#i-grid"></use>
+          </svg><span>Atributos</span></button>
+        <button class="nav-link" data-page="jornada"><svg class="icon">
+            <use href="#i-journey"></use>
+          </svg><span>Jornada</span></button>
+        <button class="nav-link" data-page="conquistas"><svg class="icon">
+            <use href="#i-trophy"></use>
+          </svg><span>Conquistas</span></button>
+        <button class="nav-link" data-page="configuracoes"><svg class="icon">
+            <use href="#i-settings"></use>
+          </svg><span>Configurações</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-orbit">✧ <span>Tudo na sua vida é alugado, e o aluguel vence sempre que o sol nasce.</span>
+        </div>
+        <div class="mini-profile">
+          <div id="sidebar-avatar" class="mini-avatar">✦</div>
+          <div><strong id="sidebar-name">Personagem</strong><small id="sidebar-level">Nível 0 · Aprendiz</small></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-content" id="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><span class="topbar-emblem"><img src="assets/sol-sonnhe.webp" alt="" width="31"
+              height="31"></span>
+          <div><span class="mobile-brand">SONN(H)E</span><span class="topbar-tag" id="header-date"></span></div>
+        </div>
+        <div class="topbar-right"><button type="button" class="theme-toggle" data-theme-toggle
+            aria-pressed="false"><span class="theme-toggle-sigil" aria-hidden="true">⚔</span><span
+              data-theme-action>Medieval 8-bit</span></button><span class="online-mark"></span><span
+            class="journey-status"> JORNADA ATIVA</span> <span class="topbar-sep">|</span><span id="topbar-level">NV.
+            0</span></div>
+      </header>
+
+      <section id="page-personagem" class="page active" aria-labelledby="dashboard-title">
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow"></p>
+            <h1 id="dashboard-title">Meu personagem<span class="title-dot">.</span></h1>
+            <p class="section-subtitle">Cada escolha escreve um novo capítulo da sua história.</p>
+          </div><button class="btn btn-ghost header-action" data-action="edit-profile"><svg class="icon">
+              <use href="#i-edit"></use>
+            </svg> Editar perfil</button>
+        </div>
+        <div id="profile-hero" class="hero-panel"></div>
+        <div id="overview-stats" class="stats-grid"></div>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EVOLUÇÃO DIÁRIA</p>
+            <h2>Seus atributos <span class="heading-muted" id="dashboard-attr-count"></span></h2>
+          </div><button class="btn btn-outline" data-page="atributos">Ver todos <svg class="icon">
+              <use href="#i-arrow"></use>
+            </svg></button>
+        </div>
+        <div id="dashboard-attributes" class="attributes-grid"></div>
+        <div class="dashboard-lower">
+          <section class="surface-panel recent-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">REGISTROS DA JORNADA</p>
+                <h3>Atividade recente</h3>
+              </div><svg class="icon decor-icon">
+                <use href="#i-journey"></use>
+              </svg>
+            </div>
+            <div id="dashboard-recent"></div>
+          </section>
+          <section class="surface-panel goal-panel">
+            <p class="eyebrow">MENSAGEM DO DIA</p>
+            <div class="daily-quote-icon">✧</div>
+            <h3>O poder está na constância.</h3>
+            <p>Grandes conquistas nascem de pequenos passos repetidos todos os dias.</p><button class="text-link"
+              data-page="jornada">Explorar minha jornada <svg class="icon">
+                <use href="#i-arrow"></use>
+              </svg></button>
+          </section>
+        </div>
+      </section>
+
+      <section id="page-atributos" class="page" aria-labelledby="attributes-title" hidden>
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">CONSTRUA SUA FORÇA</p>
+            <h1 id="attributes-title">Atributos<span class="title-dot">.</span></h1>
+            <p class="section-subtitle">Evolua um nível por dia. Cada habilidade tem sua própria história.</p>
+          </div><button class="btn btn-primary" data-action="add-attribute"><svg class="icon">
+              <use href="#i-plus"></use>
+            </svg> Novo atributo</button>
+        </div>
+        <div class="info-strip"><svg class="icon">
+            <use href="#i-spark"></use>
+          </svg><span><strong>Como funciona:</strong> concluir hoje rende +1 nível. Um dia inteiro sem conclusão reduz 1
+            nível, até o mínimo de zero. Cada atributo só pode ser concluído uma vez por dia.</span></div>
+        <div id="all-attributes" class="attributes-grid full-grid"></div>
+      </section>
+
+      <section id="page-jornada" class="page" aria-labelledby="journey-title" hidden>
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">O CAMINHO ATÉ A FORÇA</p>
+            <h1 id="journey-title">Sua jornada<span class="title-dot">.</span></h1>
+            <p class="section-subtitle">Relembre vitórias, observe padrões e siga avançando.</p>
+          </div>
+        </div>
+        <div id="journey-stats" class="stats-grid"></div>
+        <div class="journey-layout">
+          <section class="surface-panel calendar-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">REGISTRO DE ATIVIDADES</p>
+                <h3>Calendário</h3>
+              </div><svg class="icon decor-icon">
+                <use href="#i-calendar"></use>
+              </svg>
+            </div><label class="field-label" for="calendar-attribute">VISUALIZAR ATRIBUTO</label><select
+              id="calendar-attribute" class="text-input select-input"></select>
+            <div class="calendar-header">
+              <h4 id="calendar-month"></h4>
+              <div class="calendar-controls"><button class="icon-button" data-action="prev-month"
+                  aria-label="Mês anterior"><svg class="icon">
+                    <use href="#i-chevron-left"></use>
+                  </svg></button><button class="icon-button" data-action="next-month" aria-label="Mês seguinte"><svg
+                    class="icon">
+                    <use href="#i-chevron-right"></use>
+                  </svg></button></div>
+            </div>
+            <div class="calendar-weekdays">
+              <span>DOM</span><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span>
+            </div>
+            <div id="calendar-days" class="calendar-days"></div>
+            <div class="calendar-legend"><span><i class="legend-dot done"></i> Concluído</span><span><i
+                  class="legend-dot missed"></i> Não concluído</span><span><i class="legend-dot neutral"></i> Sem
+                registro</span></div>
+          </section>
+          <section class="surface-panel timeline-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">CRÔNICAS DO HERÓI</p>
+                <h3>Histórico de conquistas diárias</h3>
+              </div><svg class="icon decor-icon">
+                <use href="#i-fire"></use>
+              </svg>
+            </div>
+            <div id="journey-history" class="timeline"></div>
+          </section>
+        </div>
+        <section class="surface-panel weekly-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">CONSTÂNCIA</p>
+              <h3>Últimos 30 dias</h3>
+            </div><span class="muted small">Total de atividades por dia</span>
+          </div>
+          <div id="activity-chart" class="activity-chart" role="img"
+            aria-label="Atividades concluídas nos últimos 30 dias"></div>
+        </section>
+      </section>
+
+      <section id="page-conquistas" class="page" aria-labelledby="achievements-title" hidden>
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">MARCOS DA SUA HISTÓRIA</p>
+            <h1 id="achievements-title">Conquistas<span class="title-dot">.</span></h1>
+            <p class="section-subtitle">Uma coleção de vitórias conquistadas com esforço real.</p>
+          </div>
+        </div>
+        <div class="achievement-progress surface-panel">
+          <div>
+            <div class="eyebrow">SALÃO DAS CONQUISTAS</div>
+            <h2 id="achievement-tally">0 de 6 desbloqueadas</h2>
+            <p class="muted">Cada medalha marca um capítulo da sua evolução.</p>
+          </div>
+          <div class="achievement-orb">🏆</div>
+          <div class="progress-track">
+            <div class="progress-fill gold" id="achievement-bar" style="width:0%"></div>
+          </div>
+        </div>
+        <div id="achievements-list" class="achievements-grid"></div>
+      </section>
+
+      <section id="page-configuracoes" class="page" aria-labelledby="settings-title" hidden>
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">PERSONALIZE SUA EXPERIÊNCIA</p>
+            <h1 id="settings-title">Configurações<span class="title-dot">.</span></h1>
+            <p class="section-subtitle">Seu personagem, suas escolhas, seus dados.</p>
+          </div>
+        </div>
+        <div class="settings-layout">
+          <section class="surface-panel settings-card">
+            <div class="setting-icon">✦</div>
+            <h3>Identidade do personagem</h3>
+            <p class="muted">Altere seu nome, foto de perfil e cor de destaque.</p><button class="btn btn-outline"
+              data-action="edit-profile"><svg class="icon">
+                <use href="#i-edit"></use>
+              </svg> Editar personagem</button>
+          </section>
+          <section class="surface-panel settings-card">
+            <div class="setting-icon">◈</div>
+            <h3>Preferências visuais</h3>
+            <p class="muted">Mude entre o visual original e um mundo medieval em pixel art. Sua escolha fica salva neste
+              navegador.</p>
+            <button type="button" class="btn btn-outline settings-theme-button" data-theme-toggle
+              aria-pressed="false"><span class="theme-toggle-sigil" aria-hidden="true">⚔</span><span
+                data-theme-action>Medieval 8-bit</span></button>
+            <label class="toggle-row"><span>Reduzir
+                animações</span><input type="checkbox" id="reduce-motion"><span class="switch"
+                aria-hidden="true"></span></label>
+          </section>
+          <section class="surface-panel settings-card">
+            <div class="setting-icon">↓</div>
+            <h3>Exportar jornada</h3>
+            <p class="muted">Faça um backup completo do seu progresso em formato JSON.</p><button
+              class="btn btn-outline" data-action="export"><svg class="icon">
+                <use href="#i-download"></use>
+              </svg> Exportar dados</button>
+          </section>
+          <section class="surface-panel settings-card">
+            <div class="setting-icon">↑</div>
+            <h3>Importar backup</h3>
+            <p class="muted">Restaure um arquivo previamente exportado. O progresso atual será substituído após sua
+              confirmação.</p><button class="btn btn-outline" data-action="import"><svg class="icon">
+                <use href="#i-upload"></use>
+              </svg> Importar arquivo</button><input id="backup-input" class="sr-only" type="file"
+              accept=".json,application/json">
+          </section>
+        </div>
+        <section class="danger-panel">
+          <div>
+            <h3>Zona de reinício</h3>
+            <p>Apagar a jornada remove seu personagem, atributos, fotos, registros e conquistas deste navegador. Esta
+              ação não pode ser desfeita.</p>
+          </div><button class="btn btn-danger" data-action="reset"><svg class="icon">
+              <use href="#i-trash"></use>
+            </svg> Apagar todos os dados</button>
+        </section>
+        <p class="storage-footnote">✧ SONN(H)E salva o progresso localmente. Depois da primeira visita por HTTPS, pode
+          funcionar offline com o cache do aplicativo. Os dados ficam neste navegador e neste
+          dispositivo; exporte backups para protegê-los contra limpeza do armazenamento.</p>
+      </section>
+
+      <footer class="app-footer">SONN(H)E <span>✦</span> SUA VIDA. SUA JORNADA.</footer>
+    </main>
+
+    <nav class="mobile-nav" aria-label="Navegação móvel">
+      <button class="mobile-nav-link active" data-page="personagem"><svg class="icon">
+          <use href="#i-user"></use>
+        </svg><span>Perfil</span></button>
+      <button class="mobile-nav-link" data-page="atributos"><svg class="icon">
+          <use href="#i-grid"></use>
+        </svg><span>Atributos</span></button>
+      <button class="mobile-nav-link" data-page="jornada"><svg class="icon">
+          <use href="#i-journey"></use>
+        </svg><span>Jornada</span></button>
+      <button class="mobile-nav-link" data-page="conquistas"><svg class="icon">
+          <use href="#i-trophy"></use>
+        </svg><span>Medalhas</span></button>
+      <button class="mobile-nav-link" data-page="configuracoes"><svg class="icon">
+          <use href="#i-settings"></use>
+        </svg><span>Ajustes</span></button>
+    </nav>
+  </div>
+  <!--APLICACAO-->
+
+
+
+
+
+
+  <!-- Diálogo: adicionar atributo -->
+  <dialog id="attribute-dialog" class="modal-dialog">
+    <form id="attribute-form" novalidate>
+      <div class="modal-heading">
+        <div>
+          <p class="eyebrow">NOVA HABILIDADE</p>
+          <h2>Adicionar atributo</h2>
+        </div><button type="button" class="icon-button" data-close-dialog aria-label="Fechar"><svg class="icon">
+            <use href="#i-close"></use>
+          </svg></button>
+      </div>
+      <p class="muted">Escolha uma sugestão ou crie uma habilidade do zero.</p>
+      <div id="available-presets" class="preset-list"></div>
+      <div class="modal-divider"><span>OU PERSONALIZE</span></div>
+      <div class="two-fields">
+        <div><label class="field-label" for="attribute-icon">ÍCONE</label><input class="text-input icon-input"
+            id="attribute-icon" maxlength="12" placeholder="⚡" value="⚡"></div>
+        <div><label class="field-label" for="attribute-name">NOME DO ATRIBUTO</label><input class="text-input"
+            id="attribute-name" maxlength="30" placeholder="Ex.: Criatividade"></div>
+      </div>
+      <label class="field-label">COR DA HABILIDADE</label>
+      <div id="attribute-colors" class="color-options" role="group" aria-label="Cores do atributo"></div>
+      <p id="attribute-error" class="field-error" role="alert"></p>
+      <button class="btn btn-primary btn-wide" type="submit"><svg class="icon">
+          <use href="#i-plus"></use>
+        </svg> Criar atributo</button>
+    </form>
+  </dialog>
+
+
+
+
+
+
+  <!-- Diálogo: editar perfil -->
+  <dialog id="profile-dialog" class="modal-dialog">
+    <form id="profile-form" novalidate>
+      <div class="modal-heading">
+        <div>
+          <p class="eyebrow">IDENTIDADE</p>
+          <h2>Editar personagem</h2>
+        </div><button type="button" class="icon-button" data-close-dialog aria-label="Fechar"><svg class="icon">
+            <use href="#i-close"></use>
+          </svg></button>
+      </div>
+      <div class="avatar-picker-group"><label class="avatar-picker" for="edit-photo"><span class="avatar-preview"
+            id="edit-avatar-preview">✦</span><span class="avatar-edit-symbol"><svg class="icon">
+              <use href="#i-edit"></use>
+            </svg></span></label>
+        <div><strong>Fotografia</strong>
+          <p class="muted small">Toque para alterar. A imagem será comprimida.</p><button type="button"
+            class="text-link" id="remove-photo">Remover foto</button>
+        </div><input type="file" id="edit-photo" accept="image/png,image/jpeg,image/webp" class="sr-only">
+      </div>
+      <label class="field-label" for="edit-name">NOME DO PERSONAGEM</label><input id="edit-name" class="text-input"
+        maxlength="32" minlength="2" required>
+      <label class="field-label">COR DE DESTAQUE</label>
+      <div id="profile-colors" class="color-options" role="group" aria-label="Cores do perfil"></div>
+      <p id="profile-error" class="field-error" role="alert"></p><button class="btn btn-primary btn-wide"
+        type="submit">Salvar alterações <svg class="icon">
+          <use href="#i-check"></use>
+        </svg></button>
+    </form>
+  </dialog>
+
+
+
+
+
+
+  <!-- Confirmação de ações destrutivas -->
+  <dialog id="confirm-dialog" class="modal-dialog confirm-dialog">
+    <div class="confirm-symbol" id="confirm-symbol">!</div>
+    <h2 id="confirm-title">Confirmar ação</h2>
+    <p class="muted" id="confirm-message"></p>
+    <div class="confirm-actions"><button class="btn btn-outline" type="button"
+        id="confirm-cancel">Cancelar</button><button class="btn btn-danger" type="button"
+        id="confirm-accept">Confirmar</button></div>
+  </dialog>
+
+
+
+
+
+
+  <div id="toast-region" class="toast-region" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div id="levelup-overlay" class="levelup-overlay" aria-live="polite" hidden>
+    <div class="levelup-card">
+      <div class="levelup-sparks">✦ ✧ ✦</div>
+      <p>UMA NOVA ETAPA</p>
+      <h2>LEVEL UP!</h2><strong id="levelup-message"></strong><button type="button" class="btn btn-outline"
+        id="levelup-close">Continuar jornada <svg class="icon">
+          <use href="#i-arrow"></use>
+        </svg></button>
+    </div>
+  </div>
+</body>
+
+</html>
