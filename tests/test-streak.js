@@ -1,5 +1,5 @@
 /* Testes das regras de datas/níveis do projeto real, sem DOM ou backend.
-   Executar: node tests/test-streak.js (na pasta Sonne). */
+   Executar: node tests/test-streak.js (na pasta Habitous). */
 'use strict';
 const fs = require('node:fs');
 const path = require('node:path');

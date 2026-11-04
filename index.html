@@ -6,20 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#10071d">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="SONN(H)E">
+  <meta name="apple-mobile-web-app-title" content="HÁBITOUS">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="description" content="Transforme hábitos em atributos e sua rotina em uma jornada de evolução pessoal.">
-  <title>SONN(H)E — RPG da Vida Real</title>
-  <link rel="icon" href="assets/favicon.ico" sizes="any">
-  <link rel="icon" href="assets/favicon-48.png" type="image/png" sizes="48x48">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180">
+  <title>HÁBITOUS — Melhore seus hábitos</title>
+  <link rel="icon" href="assets/favicon-estrela.ico" sizes="any">
+  <link rel="icon" href="assets/favicon-estrela-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="assets/apple-touch-estrela.png" sizes="180x180">
   <link rel="manifest" href="manifest.webmanifest">
+  <!-- Preferência salva: aplica o modo antes da primeira pintura para evitar piscadas. -->
+  <script>
+    try { document.documentElement.dataset.theme = (localStorage.getItem('habitous-color-mode') ?? localStorage.getItem('sonnhe-color-mode')) === 'light' ? 'light' : 'dark'; }
+    catch { document.documentElement.dataset.theme = 'dark'; }
+  </script>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="theme-medieval.css">
   <script src="script.js" defer></script>
 </head>
 
 <body>
+  <!-- Céu noturno: pontos de luz decorativos, animados sem depender da internet. -->
+  <div id="cosmic-sky" class="cosmic-sky" aria-hidden="true"></div>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Ativar modo claro" title="Ativar modo claro" aria-pressed="false">
+    <svg class="icon theme-icon theme-icon-sun" aria-hidden="true"><use href="#i-theme-sun"></use></svg>
+    <svg class="icon theme-icon theme-icon-moon" aria-hidden="true"><use href="#i-theme-moon"></use></svg>
+  </button>
   <svg xmlns="http://www.w3.org/2000/svg" class="svg-sprite" aria-hidden="true" focusable="false">
     <symbol id="i-shield" viewBox="0 0 24 24">
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
@@ -94,36 +104,50 @@
     <symbol id="i-close" viewBox="0 0 24 24">
       <path d="M5 5 19 19M19 5 5 19" />
     </symbol>
+
+    <!-- Ícones lineares de contingência (uso offline), correspondentes aos Uicons do Flaticon. -->
+    <symbol id="i-theme-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></symbol>
+    <symbol id="i-theme-moon" viewBox="0 0 24 24"><path d="M20.4 15.6A8.8 8.8 0 0 1 8.4 3.6a8.8 8.8 0 1 0 12 12Z"/></symbol>
+    <symbol id="i-attr-treino" viewBox="0 0 24 24"><path d="M3 9v6m3-9v12m3-7v2m6-2v2m3-7v12m3-9v6M6 12h12"/></symbol>
+    <symbol id="i-attr-estudo" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5L2 9Zm4 2v6c4 3 8 3 12 0v-6M22 9v8"/></symbol>
+    <symbol id="i-attr-trabalho" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12c5 4 13 4 18 0m-10 3h2"/></symbol>
+    <symbol id="i-attr-leitura" viewBox="0 0 24 24"><path d="M12 6C9 3.8 5.5 3 2 4v15c4-1 7 0 10 2m0-15c3-2.2 6.5-3 10-2v15c-4-1-7 0-10 2V6Z"/></symbol>
+    <symbol id="i-attr-sono" viewBox="0 0 24 24"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.8 8.8 0 1 0 20 15.5Z"/><path d="m17 3 .5 1.5L19 5l-1.5.5L17 7l-.5-1.5L15 5l1.5-.5L17 3Z"/></symbol>
+    <symbol id="i-attr-alimentacao" viewBox="0 0 24 24"><path d="M12 8c-6-5-10 0-9 6 1 5 4 8 7 7 1-.3 3-.3 4 0 3 1 6-2 7-7 1-6-3-11-9-6Zm0 0c0-3 1-4 3-5M12 8c-1-3-3-4-5-4"/></symbol>
+    <symbol id="i-attr-meditacao" viewBox="0 0 24 24"><path d="M12 4c-2-2-6-1-6 2-3 0-4 4-2 6-1 3 1 5 4 5 1 3 4 3 4 0V4Zm0 0c2-2 6-1 6 2 3 0 4 4 2 6 1 3-1 5-4 5-1 3-4 3-4 0M8 9c2 0 3 1 4 3m0 0c1-2 2-3 4-3M9 17v3m6-3v3"/></symbol>
+    <symbol id="i-attr-hidratacao" viewBox="0 0 24 24"><path d="M12 2S5 11 5 15a7 7 0 0 0 14 0c0-4-7-13-7-13Zm-4 13a4 4 0 0 0 4 4"/></symbol>
+    <symbol id="i-attr-organizacao" viewBox="0 0 24 24"><rect x="5" y="3" width="15" height="19" rx="2"/><path d="M9 3v2M8 10l1 1 2-2m2 1h4M8 16l1 1 2-2m2 1h4"/></symbol>
+    <symbol id="i-attr-financas" viewBox="0 0 24 24"><ellipse cx="9" cy="6" rx="6" ry="3"/><path d="M3 6v4c0 4 12 4 12 0V6m-12 4v4c0 3 8 4 12 2"/><ellipse cx="16" cy="17" rx="6" ry="3"/><path d="M10 17v3c0 4 12 4 12 0v-3"/></symbol>
+    <symbol id="i-attr-estrela" viewBox="0 0 24 24"><path d="m12 2 2.9 7.1L22 12l-7.1 2.9L12 22l-2.9-7.1L2 12l7.1-2.9L12 2Z"/></symbol>
   </svg>
-
-
-
-
-
 
   <!--CADASTRO-->
   <main id="onboarding" class="onboarding-screen" hidden>
-    <div class="onboarding-art" aria-hidden="true">
+    <div class="onboarding-art">
+      <div id="cosmic-sky-art" class="cosmic-sky cosmic-sky-art" aria-hidden="true"></div>
       <div class="onboarding-art-inner">
-        <div class="rune-circle"><img src="assets/sol-sonnhe.webp" alt="" width="180" height="180"></div>
-        <p class="eyebrow">UM NOVO CAPÍTULO</p>
-        <h1>Sua jornada<br><em>começa agora.</em></h1>
-        <p>"Somos o que constantemente fazemos. A excelência é, portanto, um <strong>HÁBITO</strong>. - Aristóteles"</p>
-        <div class="art-pills"><span>✦ Nivele</span><span>⚔ Persista</span><span>✧ Conquiste</span></div>
+        <div class="solar-system" role="img" aria-label="Sistema estelar animado com pontos de luz orbitando uma estrela roxa">
+          <span class="solar-aura" aria-hidden="true"></span>
+          <span class="solar-orbit orbit-one" aria-hidden="true"><span class="solar-planet planet-one"></span></span>
+          <span class="solar-orbit orbit-two" aria-hidden="true"><span class="solar-planet planet-two"></span></span>
+          <span class="solar-orbit orbit-three" aria-hidden="true"><span class="solar-planet planet-three"></span></span>
+          <span class="solar-orbit orbit-four" aria-hidden="true"><span class="solar-planet planet-four"></span></span>
+          <span class="solar-core" aria-hidden="true">✦</span>
+          <span class="solar-speck speck-a" aria-hidden="true"></span><span class="solar-speck speck-b" aria-hidden="true"></span><span class="solar-speck speck-c" aria-hidden="true"></span>
+        </div>
+        <p class="eyebrow"></p>
+        <h1>Sua nova jornada<br><em>começa agora.</em></h1>
+        <p><i>"Somos o que constantemente fazemos. A excelência é, portanto, um <strong>hábito</strong></i> - Aristóteles"</p>
+        
       </div>
     </div>
     <section class="onboarding-form-panel" aria-labelledby="welcome-title">
       <div class="onboarding-form-wrap">
-        <div class="onboard-theme-actions"><button type="button" class="theme-toggle" data-theme-toggle
-            aria-pressed="false"><span class="theme-toggle-sigil" aria-hidden="true">⚔</span><span
-              data-theme-action>Medieval 8-bit</span></button></div>
         <div class="brand brand-onboard">
-          <div class="brand-mark"><img src="assets/sol-sonnhe.webp" alt="" width="34" height="34"></div><span>SONN(H)E
-            <small>RPG DA VIDA REAL</small></span>
+          <div class="brand-mark"><span class="brand-star" aria-hidden="true">✦</span></div><span>HÁBITOUS
+            <small>Melhore seus hábitos</small></span>
         </div>
-        <p class="eyebrow">CRIAÇÃO DE PERSONAGEM</p>
-        <h2 id="welcome-title">Crie seu novo eu.</h2>
-        <p class="muted">Toda grande história começa com um primeiro passo.</p>
+        <h2 id="welcome-title">Crie seu perfil</h2>
         <form id="create-form" novalidate>
           <div class="avatar-picker-group">
             <label class="avatar-picker" for="create-photo" aria-label="Escolher fotografia">
@@ -140,14 +164,14 @@
           <label class="field-label" for="create-name">Seu nome</label>
           <input id="create-name" class="text-input" maxlength="32" minlength="2"
             placeholder="Como devemos chamar você?" autocomplete="nickname" required>
-          <div class="onboard-section-title"><span class="field-label">ESCOLHA SEUS ATRIBUTOS</span><span
+          <div class="onboard-section-title"><span class="field-label">ESCOLHA OS HÁBITOS QUE QUER PRATICAR</span><span
               class="muted small">Você poderá alterá-los depois</span></div>
           <div id="starter-choices" class="starter-grid" role="group" aria-label="Atributos iniciais"></div>
           <p id="create-error" class="field-error" role="alert"></p>
           <button type="submit" class="btn btn-primary btn-wide btn-large">Iniciar minha jornada <svg class="icon">
               <use href="#i-arrow"></use>
             </svg></button>
-          <p class="privacy-note">Seus dados ficam somente neste navegador.</p>
+          <p class="privacy-note">Seus dados ficam somente neste navegador. <span class="onboarding-icon-credit">Uicons por <a href="https://www.flaticon.com/uicons" target="_blank" rel="noopener noreferrer">Flaticon</a></span></p>
         </form>
       </div>
     </section>
@@ -162,15 +186,16 @@
   <!--APLICACAO-->
   <div id="app" class="app-shell" hidden>
     <aside class="sidebar" aria-label="Navegação principal">
+      <div id="cosmic-sky-sidebar" class="cosmic-sky cosmic-sky-sidebar" aria-hidden="true"></div>
       <div class="brand">
-        <div class="brand-mark"><img src="assets/sol-sonnhe.webp" alt="" width="34" height="34"></div><span>SONN(H)E
-          <small>RPG DA VIDA REAL</small></span>
+        <div class="brand-mark"><span class="brand-star" aria-hidden="true">✦</span></div><span>HÁBITOUS
+          <small>Melhore seus hábitos</small></span>
       </div>
       <div class="nav-caption">SUA JORNADA</div>
       <nav class="nav-list" aria-label="Seções">
         <button class="nav-link active" data-page="personagem"><svg class="icon">
             <use href="#i-user"></use>
-          </svg><span>Personagem</span></button>
+          </svg><span>Perfil</span></button>
         <button class="nav-link" data-page="atributos"><svg class="icon">
             <use href="#i-grid"></use>
           </svg><span>Atributos</span></button>
@@ -185,7 +210,7 @@
           </svg><span>Configurações</span></button>
       </nav>
       <div class="sidebar-bottom">
-        <div class="sidebar-orbit">✧ <span>Tudo na sua vida é alugado, e o aluguel vence sempre que o sol nasce.</span>
+        <div class="sidebar-orbit">✧ <span>O aluguel vence todo dia.</span>
         </div>
         <div class="mini-profile">
           <div id="sidebar-avatar" class="mini-avatar">✦</div>
@@ -196,13 +221,10 @@
 
     <main class="app-content" id="main-content">
       <header class="topbar">
-        <div class="topbar-left"><span class="topbar-emblem"><img src="assets/sol-sonnhe.webp" alt="" width="31"
-              height="31"></span>
-          <div><span class="mobile-brand">SONN(H)E</span><span class="topbar-tag" id="header-date"></span></div>
+        <div class="topbar-left"><span class="topbar-emblem"><span class="brand-star" aria-hidden="true">✦</span></span>
+          <div><span class="mobile-brand">HÁBITOUS</span><span class="topbar-tag" id="header-date"></span></div>
         </div>
-        <div class="topbar-right"><button type="button" class="theme-toggle" data-theme-toggle
-            aria-pressed="false"><span class="theme-toggle-sigil" aria-hidden="true">⚔</span><span
-              data-theme-action>Medieval 8-bit</span></button><span class="online-mark"></span><span
+        <div class="topbar-right"><span class="online-mark"></span><span
             class="journey-status"> JORNADA ATIVA</span> <span class="topbar-sep">|</span><span id="topbar-level">NV.
             0</span></div>
       </header>
@@ -211,8 +233,7 @@
         <div class="page-heading">
           <div>
             <p class="eyebrow"></p>
-            <h1 id="dashboard-title">Meu personagem<span class="title-dot">.</span></h1>
-            <p class="section-subtitle">Cada escolha escreve um novo capítulo da sua história.</p>
+            <h1 id="dashboard-title">Meu perfil<span class="title-dot">.</span></h1>
           </div><button class="btn btn-ghost header-action" data-action="edit-profile"><svg class="icon">
               <use href="#i-edit"></use>
             </svg> Editar perfil</button>
@@ -221,7 +242,6 @@
         <div id="overview-stats" class="stats-grid"></div>
         <div class="section-heading">
           <div>
-            <p class="eyebrow">EVOLUÇÃO DIÁRIA</p>
             <h2>Seus atributos <span class="heading-muted" id="dashboard-attr-count"></span></h2>
           </div><button class="btn btn-outline" data-page="atributos">Ver todos <svg class="icon">
               <use href="#i-arrow"></use>
@@ -240,24 +260,14 @@
             </div>
             <div id="dashboard-recent"></div>
           </section>
-          <section class="surface-panel goal-panel">
-            <p class="eyebrow">MENSAGEM DO DIA</p>
-            <div class="daily-quote-icon">✧</div>
-            <h3>O poder está na constância.</h3>
-            <p>Grandes conquistas nascem de pequenos passos repetidos todos os dias.</p><button class="text-link"
-              data-page="jornada">Explorar minha jornada <svg class="icon">
-                <use href="#i-arrow"></use>
-              </svg></button>
-          </section>
         </div>
       </section>
 
       <section id="page-atributos" class="page" aria-labelledby="attributes-title" hidden>
         <div class="page-heading">
           <div>
-            <p class="eyebrow">CONSTRUA SUA FORÇA</p>
             <h1 id="attributes-title">Atributos<span class="title-dot">.</span></h1>
-            <p class="section-subtitle">Evolua um nível por dia. Cada habilidade tem sua própria história.</p>
+            <p class="section-subtitle">Evolua um nível por dia. Todo dia.</p>
           </div><button class="btn btn-primary" data-action="add-attribute"><svg class="icon">
               <use href="#i-plus"></use>
             </svg> Novo atributo</button>
@@ -272,7 +282,6 @@
       <section id="page-jornada" class="page" aria-labelledby="journey-title" hidden>
         <div class="page-heading">
           <div>
-            <p class="eyebrow">O CAMINHO ATÉ A FORÇA</p>
             <h1 id="journey-title">Sua jornada<span class="title-dot">.</span></h1>
             <p class="section-subtitle">Relembre vitórias, observe padrões e siga avançando.</p>
           </div>
@@ -282,7 +291,6 @@
           <section class="surface-panel calendar-panel">
             <div class="panel-heading">
               <div>
-                <p class="eyebrow">REGISTRO DE ATIVIDADES</p>
                 <h3>Calendário</h3>
               </div><svg class="icon decor-icon">
                 <use href="#i-calendar"></use>
@@ -310,7 +318,6 @@
           <section class="surface-panel timeline-panel">
             <div class="panel-heading">
               <div>
-                <p class="eyebrow">CRÔNICAS DO HERÓI</p>
                 <h3>Histórico de conquistas diárias</h3>
               </div><svg class="icon decor-icon">
                 <use href="#i-fire"></use>
@@ -334,18 +341,16 @@
       <section id="page-conquistas" class="page" aria-labelledby="achievements-title" hidden>
         <div class="page-heading">
           <div>
-            <p class="eyebrow">MARCOS DA SUA HISTÓRIA</p>
             <h1 id="achievements-title">Conquistas<span class="title-dot">.</span></h1>
             <p class="section-subtitle">Uma coleção de vitórias conquistadas com esforço real.</p>
           </div>
         </div>
         <div class="achievement-progress surface-panel">
           <div>
-            <div class="eyebrow">SALÃO DAS CONQUISTAS</div>
-            <h2 id="achievement-tally">0 de 6 desbloqueadas</h2>
+            <h2 id="achievement-tally">0 de 10 desbloqueadas</h2>
             <p class="muted">Cada medalha marca um capítulo da sua evolução.</p>
           </div>
-          <div class="achievement-orb">🏆</div>
+          <div class="achievement-orb"><svg class="icon" aria-hidden="true"><use href="#i-trophy"></use></svg></div>
           <div class="progress-track">
             <div class="progress-fill gold" id="achievement-bar" style="width:0%"></div>
           </div>
@@ -356,7 +361,6 @@
       <section id="page-configuracoes" class="page" aria-labelledby="settings-title" hidden>
         <div class="page-heading">
           <div>
-            <p class="eyebrow">PERSONALIZE SUA EXPERIÊNCIA</p>
             <h1 id="settings-title">Configurações<span class="title-dot">.</span></h1>
             <p class="section-subtitle">Seu personagem, suas escolhas, seus dados.</p>
           </div>
@@ -372,12 +376,8 @@
           </section>
           <section class="surface-panel settings-card">
             <div class="setting-icon">◈</div>
-            <h3>Preferências visuais</h3>
-            <p class="muted">Mude entre o visual original e um mundo medieval em pixel art. Sua escolha fica salva neste
-              navegador.</p>
-            <button type="button" class="btn btn-outline settings-theme-button" data-theme-toggle
-              aria-pressed="false"><span class="theme-toggle-sigil" aria-hidden="true">⚔</span><span
-                data-theme-action>Medieval 8-bit</span></button>
+            <h3>Acessibilidade</h3>
+            <p class="muted">Controle os efeitos animados do universo HÁBITOUS. Sua preferência fica salva neste navegador.</p>
             <label class="toggle-row"><span>Reduzir
                 animações</span><input type="checkbox" id="reduce-motion"><span class="switch"
                 aria-hidden="true"></span></label>
@@ -409,12 +409,12 @@
               <use href="#i-trash"></use>
             </svg> Apagar todos os dados</button>
         </section>
-        <p class="storage-footnote">✧ SONN(H)E salva o progresso localmente. Depois da primeira visita por HTTPS, pode
+        <p class="storage-footnote">✧ HÁBITOUS salva o progresso localmente. Depois da primeira visita por HTTPS, pode
           funcionar offline com o cache do aplicativo. Os dados ficam neste navegador e neste
           dispositivo; exporte backups para protegê-los contra limpeza do armazenamento.</p>
       </section>
 
-      <footer class="app-footer">SONN(H)E <span>✦</span> SUA VIDA. SUA JORNADA.</footer>
+      <footer class="app-footer">HÁBITOUS <span>✦</span> SUA VIDA. SUA JORNADA. <small class="icon-credit">Uicons por <a href="https://www.flaticon.com/uicons" target="_blank" rel="noopener noreferrer">Flaticon</a></small></footer>
     </main>
 
     <nav class="mobile-nav" aria-label="Navegação móvel">
@@ -457,8 +457,7 @@
       <div id="available-presets" class="preset-list"></div>
       <div class="modal-divider"><span>OU PERSONALIZE</span></div>
       <div class="two-fields">
-        <div><label class="field-label" for="attribute-icon">ÍCONE</label><input class="text-input icon-input"
-            id="attribute-icon" maxlength="12" placeholder="⚡" value="⚡"></div>
+        <div><label class="field-label" for="attribute-icon">ÍCONE</label><select class="text-input icon-input" id="attribute-icon" aria-label="Símbolo do atributo"></select></div>
         <div><label class="field-label" for="attribute-name">NOME DO ATRIBUTO</label><input class="text-input"
             id="attribute-name" maxlength="30" placeholder="Ex.: Criatividade"></div>
       </div>

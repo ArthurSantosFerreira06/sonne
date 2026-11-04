@@ -1,10 +1,10 @@
 /* Cache dos arquivos do aplicativo. Incrementar a versão a cada atualização publicada. */
-const CACHE_NAME = 'sonnhe-static-v2';
+const CACHE_NAME = 'habitous-static-v1';
 const APP_FILES = [
-  './', './index.html', './style.css', './theme-medieval.css', './script.js',
-  './manifest.webmanifest', './assets/sol-sonnhe.webp', './assets/favicon.ico',
-  './assets/favicon-48.png', './assets/apple-touch-icon.png',
-  './assets/icon-192.png', './assets/icon-512.png', './assets/icon-maskable-512.png'
+  './', './index.html', './style.css', './script.js',
+  './manifest.webmanifest', './assets/favicon.ico', './assets/favicon-estrela.ico',
+  './assets/favicon-estrela-48.png', './assets/apple-touch-estrela.png',
+  './assets/icon-estrela-192.png', './assets/icon-estrela-512.png', './assets/icon-estrela-maskable-512.png'
 ];
 
 self.addEventListener('install', event => {
@@ -13,7 +13,7 @@ self.addEventListener('install', event => {
 });
 self.addEventListener('activate', event => {
   event.waitUntil(caches.keys().then(keys => Promise.all(
-    keys.filter(key => key.startsWith('sonnhe-static-') && key !== CACHE_NAME)
+    keys.filter(key => (key.startsWith('sonnhe-static-') || key.startsWith('habitous-static-')) && key !== CACHE_NAME)
       .map(key => caches.delete(key))
   )).then(() => self.clients.claim()));
 });
