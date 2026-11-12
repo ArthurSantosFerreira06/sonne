@@ -20,6 +20,7 @@
     catch { document.documentElement.dataset.theme = 'dark'; }
   </script>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="details.css">
   <script src="script.js" defer></script>
 </head>
 
@@ -279,6 +280,12 @@
         <div id="all-attributes" class="attributes-grid full-grid"></div>
       </section>
 
+      <!-- Painel individual, apresentado ao abrir qualquer atributo. -->
+      <section id="page-detalhe" class="page detail-page" aria-labelledby="detail-title" hidden>
+        <button type="button" class="detail-back" data-action="back-attributes">← Voltar aos atributos</button>
+        <div id="detail-content"></div>
+      </section>
+
       <section id="page-jornada" class="page" aria-labelledby="journey-title" hidden>
         <div class="page-heading">
           <div>
@@ -459,8 +466,17 @@
       <div class="two-fields">
         <div><label class="field-label" for="attribute-icon">ÍCONE</label><select class="text-input icon-input" id="attribute-icon" aria-label="Símbolo do atributo"></select></div>
         <div><label class="field-label" for="attribute-name">NOME DO ATRIBUTO</label><input class="text-input"
-            id="attribute-name" maxlength="30" placeholder="Ex.: Criatividade"></div>
+            id="attribute-name" maxlength="30" placeholder="Ex.: Tomar creatina"></div>
       </div>
+      <label class="field-label" for="attribute-kind">TIPO DE PAINEL</label>
+      <select class="text-input select-input" id="attribute-kind">
+        <option value="geral">Hábito diário · Ex.: tomar creatina</option>
+        <option value="treino">Treino · Rotinas, exercícios e recordes</option>
+        <option value="estudo">Estudos · Disciplinas, provas e horas</option>
+        <option value="sono">Sono · Horas dormidas</option>
+        <option value="hidratacao">Hidratação · Água consumida</option>
+      </select>
+      <p class="muted small">Você poderá acompanhar cada atributo em um painel próprio.</p>
       <label class="field-label">COR DA HABILIDADE</label>
       <div id="attribute-colors" class="color-options" role="group" aria-label="Cores do atributo"></div>
       <p id="attribute-error" class="field-error" role="alert"></p>

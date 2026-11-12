@@ -1,7 +1,7 @@
 /* Cache dos arquivos do aplicativo. Incrementar a versão a cada atualização publicada. */
-const CACHE_NAME = 'habitous-static-v1';
+const CACHE_NAME = 'habitous-static-v2';
 const APP_FILES = [
-  './', './index.html', './style.css', './script.js',
+  './', './index.html', './style.css', './details.css', './script.js',
   './manifest.webmanifest', './assets/favicon.ico', './assets/favicon-estrela.ico',
   './assets/favicon-estrela-48.png', './assets/apple-touch-estrela.png',
   './assets/icon-estrela-192.png', './assets/icon-estrela-512.png', './assets/icon-estrela-maskable-512.png'
